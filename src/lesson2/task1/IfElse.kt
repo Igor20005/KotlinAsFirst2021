@@ -85,7 +85,22 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = TODO()
+): Double {
+    val FullLength = t1 * v1 + t2 * v2 + t3 * v3
+    val HalfLength  = FullLength * 0.5
+    val Length1 = t1 * v1
+    val Length2 = t2 * v2
+    val Length3 = t3 * v3
+    var reasult: Double = 0.0
+    if (HalfLength <= Length1) {
+        reasult = HalfLength / v1
+    } else if (HalfLength <= Length1 + Length2) {
+        reasult = t1 + (HalfLength - Length1) / v2
+    } else {
+        reasult = t1 + t2 + (HalfLength - Length1 - Length2) / v3
+    }
+    return reasult
+}
 
 /**
  * Простая (2 балла)
