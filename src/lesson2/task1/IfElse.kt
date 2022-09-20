@@ -2,8 +2,10 @@
 
 package lesson2.task1
 
+//import com.sun.org.apache.xpath.internal.operations.Or
 import lesson1.task1.discriminant
 import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
@@ -115,7 +117,17 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
+): Int {
+    var R1: Int = 0
+    var R2: Int = 0
+    if ((kingX == rookX1) || (kingY == rookY1)) {
+       R1 = 1
+    }
+if ((kingX == rookX2) || (kingY == rookY2)) {
+    R2 = 2
+}
+    return R1 + R2
+}
 
 /**
  * Простая (2 балла)
@@ -131,7 +143,17 @@ fun rookOrBishopThreatens(
     kingX: Int, kingY: Int,
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
-): Int = TODO()
+): Int {
+    var R1: Int = 0
+    var R2: Int = 0
+    if ((kingX == rookX) || (kingY == rookY)) {
+        R1 = 1
+    }
+    if (Math.abs(kingX - bishopX) == Math.abs(kingY - bishopY)) {
+        R2 = 2
+    }
+    return R1 + R2
+}
 
 /**
  * Простая (2 балла)
@@ -141,7 +163,24 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    var x: Double = 0.0
+    var z: Double = 0.0
+    var y: Double = 0.0
+    var d: Double = 0.0
+    x = max( max (a, b), c)
+    z = min( min (a, b), c)
+
+    y = (a + b + c) - x - z
+
+
+    if (x >= y + z)
+ return - 1
+     d = x * x - y* y - z* z
+    if (d == 0.0) return 1
+    if (d < 0.0) return 0
+    return 2
+}
 
 /**
  * Средняя (3 балла)
